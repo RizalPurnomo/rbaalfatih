@@ -40,20 +40,22 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                <?php  if(!empty($billing)){for($a=0; $a<count($billing); $a++){?>
-                                <tr>
+                                <?php  if(!empty($santri)){for($a=0; $a<count($santri); $a++){?>
+                                <?php $idSantri = $santri[$a]['idSantri']; ?>
+                                <tr id="pasien<?php echo $idSantri; ?>">
                                     <td><?php echo $a+1 ?></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                    <td><?php echo $idSantri ?></td>
+                                    <td><?php echo $santri[$a]['nama'] ?></td>
+                                    <td><?php echo $santri[$a]['panggilan'] ?></td>
+                                    <td><?php echo $santri[$a]['tmpLahir'] ?></td>
+                                    <td><?php echo $santri[$a]['tglLahir'] ?></td>
+                                    <td><?php echo $santri[$a]['jnsKel'] ?></td>
+                                    <td><?php echo $santri[$a]['tlp'] ?></td>
                                     <td width="125px">
                                         <a class="btn btn-large btn-primary"
-                                            href="javascript:selectBilling('billing<?php echo $billing[$a]['idpiutang']; ?>')">Edit</a>
+                                            href="javascript:selectSantri('santri<?php echo $santri[$a]['idSantri']; ?>')">Edit</a>
                                         | <a class="btn btn-large btn-primary"
-                                            href="javascript:deleteBilling('billing<?php echo $billing[$a]['idpiutang']; ?>')">Delete</a>
+                                            href="javascript:deletesantri('santri<?php echo $santri[$a]['idSantri']; ?>')">Delete</a>
                                     </td>
                                 </tr>
                                 <?php }} ?>

@@ -2,8 +2,7 @@
 	<div class="pull-right hidden-xs">
 		<b>Version</b> 1.1
 	</div>
-	<strong>Copyright &copy; <?php echo date('Y'); ?> <a href="http://anandaislamicschool.com">Ananda Islamic
-			School</a>.</strong> All rights reserved.
+	<strong>Copyright &copy; <?php echo date('Y'); ?> <a href="https://www.instagram.com/rizalpurnomo114/">Rizal Purnomo</a>.</strong> All rights reserved.
 </footer>
 
 

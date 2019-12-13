@@ -1,4 +1,4 @@
-  <?php $this->load->view('header'); ?>
+<?php $this->load->view('header'); ?>
   <!-- Left side column. contains the logo and sidebar -->
   <?php $this->load->view('sidebar'); ?>
 
@@ -22,7 +22,7 @@
   			<div class="col-sm-12">
   				<div class="box box-info">
   					<div class="box-body">
-  						<h1>Selamat Datang <?php echo $this->session->userdata('realname'); ?></h1>
+
 
   					</div>
   				</div>

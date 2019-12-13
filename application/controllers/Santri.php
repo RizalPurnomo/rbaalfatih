@@ -9,12 +9,26 @@ class Santri extends CI_Controller {
     }
 
 	public function index(){
-		$this->load->view('view_santri');
+    $data['santri'] = $this->santri_model->getAllSantri();
+		$this->load->view('view_santri',$data);
     }
     
     function add() {      
-        $this->load->view('view_santri_add');
+      $data['idSantri'] = $this->santri_model->getidSantri(date('y')); 
+      $this->load->view('view_santri_add',$data);
+    } 
+
+    public function saveSantri(){
+      $santri = $this->input->post('santri');
+      $this->santri_model->saveData($santri,'tblsantri');
+      print_array($this->input->post());   		
     }    
+
+    public function getMaxSantri(){
+      $idSantri = $this->santri_model->getidSantri(date('y')); 
+      echo $idSantri;
+    }     
+    
 }
 
 // $ eval `ssh-agent -s`
