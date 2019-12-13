@@ -7,16 +7,20 @@ class Santri_model extends CI_Model {
 		parent::__construct();
     }
 
-	public function getValidUser($username,$password){
-		$sql = "SELECT * FROM tbluser 
- 				where user='".$username."' and password='".$password."'";
-		$qry = $this->db->query($sql);
-		return $qry->result_array();
-	}
-
 	public function saveData($data,$tabel){
 		$this->db->insert($tabel, $data);   
 	}  	
+
+	public function editData($id,$data,$tabel){ 
+		$this->db->where('idSantri', $id);
+		$this->db->update($tabel, $data);
+		return  "Data ".$id." Berhasil Diupdate";
+	} 	
+
+	public function deleteData($id,$tabel){
+		$this->db->where('idSantri', $id);
+		$this->db->delete($tabel);
+	} 	
 
 	public function getidSantri($thn){
 		$idSantri="";
@@ -38,7 +42,21 @@ class Santri_model extends CI_Model {
 		$sql = "SELECT * FROM tblsantri";
 		$qry = $this->db->query($sql);
 		return $qry->result_array();        
-  	}	
+	}
+	  
+	public function getSantriById($idSantri){
+		$query = "SELECT * FROM tblSantri WHERE idSantri='$idSantri'";     
+		$sql = $this->db->query($query);
+		return $sql->result_array();  
+	}	  
 
+    public function getSumSantri(){
+        $sql = "SELECT COUNT(idsantri)AS id,
+				(SELECT (COUNT(idsantri)) FROM tblsantri a WHERE jnsKel='l' ) AS L,
+				(SELECT (COUNT(idsantri)) FROM tblsantri a WHERE jnsKel='p' ) AS P
+			FROM tblsantri ";
+        $qry = $this->db->query($sql)->result_array();
+        return $qry;        
+    }	
 
 }

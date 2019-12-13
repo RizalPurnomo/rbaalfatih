@@ -43,6 +43,8 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="<?php echo base_url('santri'); ?>"><i class="fa fa-circle-o"></i>Santri</a></li>
+            <li><a href="<?php echo base_url('user'); ?>"><i class="fa fa-circle-o"></i>Pengajar</a></li>
+            <li><a href="<?php echo base_url('kelas'); ?>"><i class="fa fa-circle-o"></i>Kelas</a></li>
           </ul>
         </li>                
         <?php } ?>

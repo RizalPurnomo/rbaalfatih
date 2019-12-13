@@ -2,6 +2,39 @@
   <!-- Left side column. contains the logo and sidebar -->
   <?php $this->load->view('sidebar'); ?>
 
+  <script type="text/javascript">
+  	function selectSantri(id) {
+  		console.log(id);
+  		var idSantri = $("#" + id + " td")[1].innerHTML;
+          console.log(idSantri);
+  		$.ajax({
+  			success: function (html) {
+  				var url = "<?php echo base_url(); ?>santri/edit/" + idSantri;
+  				window.location.href = url;
+  			}
+  		});
+  	}
+
+    function deleteSantri(id) {
+      var idSiswa = $("#" + id + " td")[1].innerHTML;    
+      var r = confirm("Apakah yakin data akan di hapus!");
+      if (r == true) {
+        $.ajax({
+          type: "POST",
+          url: "<?php echo base_url(); ?>santri/delete/" + idSiswa,
+          success: function (html) {
+            console.log(html);
+            var url = "<?php echo base_url(); ?>santri/";
+            window.location.href = url;
+          }
+        })
+      } else {
+        return;
+      }
+    }
+
+  </script>
+
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
   	<section class="content-header">
@@ -42,7 +75,7 @@
                                 <tbody>
                                 <?php  if(!empty($santri)){for($a=0; $a<count($santri); $a++){?>
                                 <?php $idSantri = $santri[$a]['idSantri']; ?>
-                                <tr id="pasien<?php echo $idSantri; ?>">
+                                <tr id="santri<?php echo $idSantri; ?>">
                                     <td><?php echo $a+1 ?></td>
                                     <td><?php echo $idSantri ?></td>
                                     <td><?php echo $santri[$a]['nama'] ?></td>
@@ -55,7 +88,7 @@
                                         <a class="btn btn-large btn-primary"
                                             href="javascript:selectSantri('santri<?php echo $santri[$a]['idSantri']; ?>')">Edit</a>
                                         | <a class="btn btn-large btn-primary"
-                                            href="javascript:deletesantri('santri<?php echo $santri[$a]['idSantri']; ?>')">Delete</a>
+                                            href="javascript:deleteSantri('santri<?php echo $santri[$a]['idSantri']; ?>')">Delete</a>
                                     </td>
                                 </tr>
                                 <?php }} ?>

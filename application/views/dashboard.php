@@ -23,6 +23,33 @@
   				<div class="box box-info">
   					<div class="box-body">
   						<h1>Selamat Datang <?php echo $this->session->userdata('realname'); ?></h1>
+  						<div class="col-lg-3 col-xs-4">
+  							<!-- small box -->
+  							<div class="small-box bg-green">
+  								<div class="inner">
+  									<h3><?php echo $santri[0]['id'] ?></h3>
+  									<p>SANTRI </p>
+  								</div>
+  								<div class="icon">
+  									<i class="ion ion-person"></i>
+  								</div>
+  								<a href="#" class="small-box-footer">Ikhwan : <?php echo $santri[0]['L'] ?>  ||  Akhwat : <?php echo $santri[0]['P'] ?> </i></a>
+  							</div>
+  						</div>
+
+  						<div class="col-lg-3 col-xs-4">
+  							<!-- small box -->
+  							<div class="small-box bg-yellow">
+  								<div class="inner">
+  									<h3><?php echo $user[0]['id'] ?></h3>
+  									<p>PENGAJAR </p>
+  								</div>
+  								<div class="icon">
+  									<i class="ion ion-person"></i>
+  								</div>
+  								<a href="#" class="small-box-footer">Ikhwan : <?php echo $user[0]['L'] ?>  ||  Akhwat : <?php echo $user[0]['P'] ?> </i></a>
+  							</div>
+  						</div>						  
 
   					</div>
   				</div>
