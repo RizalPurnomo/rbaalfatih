@@ -32,7 +32,7 @@
         <div style="color: white">Terms : </div> -->
         <li class="header">MAIN NAVIGATION</li>
 
-        <?php if($this->session->userdata('level')=="Administrator" ){?>
+        <?php //if($this->session->userdata('level')=="Administrator" ){?>
         <li class="treeview active">
           <a href="#">
             <i class="fa fa-files-o"></i>
@@ -47,7 +47,20 @@
             <li><a href="<?php echo base_url('kelas'); ?>"><i class="fa fa-circle-o"></i>Kelas</a></li>
           </ul>
         </li>                
-        <?php } ?>
+        <?php //} ?>
+
+        <li class="treeview active">
+          <a href="#">
+            <i class="fa fa-files-o"></i>
+            <span>Menu</span>
+            <span class="pull-right-container">
+              <!--<span class="label label-primary pull-right">4</span> -->
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="<?php echo base_url('tabungan'); ?>"><i class="fa fa-circle-o"></i>Tabungan</a></li>
+          </ul>
+        </li>           
 
 
       </ul>

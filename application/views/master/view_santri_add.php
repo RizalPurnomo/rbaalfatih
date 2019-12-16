@@ -56,10 +56,17 @@
 		var namaAyah    = $("#namaAyah").val();
         var namaIbu     = $("#namaIbu").val();
   		var email       = $("#email").val();
+		var kelas       = $("#kelas").val();
+
+		if(kelas==""){
+			alert("Harap Pilih Kelas");
+			return;
+		} 
 
   		var dataArray = {
   			"santri": {
   				"idSantri"      : idSantri,
+				"idKelas"       : kelas,
   				"nama"          : nama,
                 "panggilan"     : panggilan,
   				"tmpLahir"      : tmpLahir,
@@ -217,6 +224,24 @@
 
   						</div>
   					</form>
+
+					  <div class="col-md-12">
+	  					<div class="box-body">
+							<div class="form-group">
+								<label for="kelas" class="col-sm-4 control-label">Kelas</label>
+								<div class="col-sm-8">
+									<select class="form-control" id="kelas">
+										<option value="">-- Pilih Kelas --</option>
+										<?php for($a=0; $a<count($kelas); $a++){  ?>
+											<option value="<?php echo $kelas[$a]['idKelas'] ?>" >
+												<?php echo $kelas[$a]['namaKelas'] ." - " . $kelas[$a]['realname'] ?>
+											</option>
+										<?php } ?>
+									</select>
+								</div>
+							</div>  
+						</div>
+					</div>						  
   					<!-- /.box-body -->
   					<div class="box-footer">
   						<button type="submit" class="btn btn-info pull-right" onclick="saveSantri()">Simpan</button>

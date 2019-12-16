@@ -46,7 +46,7 @@ class User_model extends CI_Model {
 	}	
 
 	public function getAllUser(){
-		$sql = "SELECT * FROM tbluser";
+		$sql = "SELECT * FROM tbluser where level!='Administrator'";
 		$qry = $this->db->query($sql);
 		return $qry->result_array();        
 	}
@@ -59,9 +59,9 @@ class User_model extends CI_Model {
 
     public function getSumuser(){
         $sql = "SELECT COUNT(idUser)AS id,
-				(SELECT (COUNT(idUser)) FROM tbluser a WHERE jnsKel='l' ) AS L,
-				(SELECT (COUNT(idUser)) FROM tbluser a WHERE jnsKel='p' ) AS P
-			FROM tbluser ";
+				(SELECT (COUNT(idUser)) FROM tbluser a WHERE jnsKel='l' and level!='Administrator' ) AS L,
+				(SELECT (COUNT(idUser)) FROM tbluser a WHERE jnsKel='p' and level!='Administrator' ) AS P
+			FROM tbluser where level!='Administrator'";
         $qry = $this->db->query($sql)->result_array();
         return $qry;        
     }	

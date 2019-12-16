@@ -55,11 +55,18 @@
 		var namaAyah    = $("#namaAyah").val();
         var namaIbu     = $("#namaIbu").val();
   		var email       = $("#email").val();
+		var kelas		= $("#kelas").val();
+
+		if(kelas==""){
+			alert("Harap Pilih Kelas");
+			return;
+		} 		  
 
   		var dataArray = {
   			"santri": {
   				"idSantri"      : idSantri,
   				"nama"          : nama,
+				"idKelas"       : kelas,
                 "panggilan"     : panggilan,
   				"tmpLahir"      : tmpLahir,
   				"tglLahir"      : datepicker,
@@ -100,7 +107,7 @@
   		</h1>
   		<ol class="breadcrumb">
   			<li><a href="#"><i class="fa fa-dashboard"></i> Santri</a></li>
-  			<li class="active">add</li>
+  			<li class="active">Edit</li>
   		</ol>
   	</section>
 
@@ -115,98 +122,117 @@
   						<h3 class="box-title">Input Data Santri</h3>
   					</div>
 
-  					<form class="form-horizontal">
-  						<div class="box-body">
-  							<div class="col-sm-6">
-  								<div class="form-group">
-  									<label for="idSantri" class="col-sm-4 control-label">ID Santri</label>
-  									<div class="col-sm-8">
-  										<input type="text" class="form-control" id="idSantri" placeholder="ID Santri" value="<?php echo $santri[0]['idSantri']; ?>" disabled>
-  									</div>
-  								</div>
+	  				<div class="row">
+						<form class="form-horizontal">
+							<div class="box-body">
+								<div class="col-sm-6">
+									<div class="form-group">
+										<label for="idSantri" class="col-sm-4 control-label">ID Santri</label>
+										<div class="col-sm-8">
+											<input type="text" class="form-control" id="idSantri" placeholder="ID Santri" value="<?php echo $santri[0]['idSantri']; ?>" disabled>
+										</div>
+									</div>
 
-  								<div class="form-group">
-  									<label for="nama" class="col-sm-4 control-label">Nama Lengkap</label>
-  									<div class="col-sm-8">
-  										<input type="text" class="form-control" id="nama" placeholder="Nama Lengkap" value="<?php echo $santri[0]['nama']; ?>">
-  									</div>
-  								</div>
+									<div class="form-group">
+										<label for="nama" class="col-sm-4 control-label">Nama Lengkap</label>
+										<div class="col-sm-8">
+											<input type="text" class="form-control" id="nama" placeholder="Nama Lengkap" value="<?php echo $santri[0]['nama']; ?>">
+										</div>
+									</div>
 
-  								<div class="form-group">
-  									<label for="panggilan" class="col-sm-4 control-label">Nama Panggilan</label>
-  									<div class="col-sm-8">
-  										<input type="text" class="form-control" id="panggilan" placeholder="Nama Panggilan" value="<?php echo $santri[0]['panggilan']; ?>">
-  									</div>
-  								</div>                                  
+									<div class="form-group">
+										<label for="panggilan" class="col-sm-4 control-label">Nama Panggilan</label>
+										<div class="col-sm-8">
+											<input type="text" class="form-control" id="panggilan" placeholder="Nama Panggilan" value="<?php echo $santri[0]['panggilan']; ?>">
+										</div>
+									</div>                                  
 
-  								<div class="form-group">
-  									<label for="tmpLahir" class="col-sm-4 control-label">Tempat / Tanggal Lahir</label>
-  									<div class="col-sm-4">
-  										<input type="text" class="form-control" id="tmpLahir" placeholder="Tempat Lahir" value="<?php echo $santri[0]['tmpLahir']; ?>">
-  									</div>
-  									<div class="col-sm-4">
-  										<div class="input-group date">
-  											<div class="input-group-addon">
-  												<i class="fa fa-calendar"></i>
-  											</div>
-  											<input type="text" class="form-control pull-right" id="datepicker"
-                                              value="<?php echo $santri[0]['tglLahir']; ?>">
-  										</div>
-  									</div>
-  								</div>
+									<div class="form-group">
+										<label for="tmpLahir" class="col-sm-4 control-label">Tempat / Tanggal Lahir</label>
+										<div class="col-sm-3">
+											<input type="text" class="form-control" id="tmpLahir" placeholder="Tempat Lahir" value="<?php echo $santri[0]['tmpLahir']; ?>">
+										</div>
+										<div class="col-sm-5">
+											<div class="input-group date">
+												<div class="input-group-addon">
+													<i class="fa fa-calendar"></i>
+												</div>
+												<input type="text" class="form-control pull-right" id="datepicker"
+												value="<?php echo $santri[0]['tglLahir']; ?>">
+											</div>
+										</div>
+									</div>
 
-  								<div class="form-group">
-  									<label for="jenisKelamin" class="col-sm-4 control-label">Jenis Kelamin</label>
-  									<div class="col-sm-8">
-  										<select class="form-control" id="jenisKelamin">
-  											<option value="L" <?php if($santri[0]['jnsKel']=="L"){echo "selected";} ?>>Laki Laki</option>
-  											<option value="P" <?php if($santri[0]['jnsKel']=="P"){echo "selected";} ?>>Perempuan</option>
-  										</select>
-  									</div>
-  								</div>
+									<div class="form-group">
+										<label for="jenisKelamin" class="col-sm-4 control-label">Jenis Kelamin</label>
+										<div class="col-sm-8">
+											<select class="form-control" id="jenisKelamin">
+												<option value="L" <?php if($santri[0]['jnsKel']=="L"){echo "selected";} ?>>Laki Laki</option>
+												<option value="P" <?php if($santri[0]['jnsKel']=="P"){echo "selected";} ?>>Perempuan</option>
+											</select>
+										</div>
+									</div>
 
-  								<div class="form-group">
-  									<label for="tlp" class="col-sm-4 control-label">Telpon</label>
-  									<div class="col-sm-8">
-  										<input type="text" class="form-control" id="tlp" placeholder="Telpon" value="<?php echo $santri[0]['tlp']; ?>">
-  									</div>
-  								</div>                                  
+									<div class="form-group">
+										<label for="tlp" class="col-sm-4 control-label">Telpon</label>
+										<div class="col-sm-8">
+											<input type="text" class="form-control" id="tlp" placeholder="Telpon" value="<?php echo $santri[0]['tlp']; ?>">
+										</div>
+									</div>                                  
 
-  							</div>
-  							<div class="col-sm-6">
+								</div>
+								<div class="col-sm-6">
 
-                                <div class="form-group">
-  									<label for="alamat" class="col-sm-4 control-label">Alamat</label>
-  									<div class="col-sm-8">
-  										<textarea class="form-control" id="alamat" placeholder="Alamat" rows="3"><?php echo $santri[0]['alamat']; ?></textarea>
-  									</div>
-  								</div>
+									<div class="form-group">
+										<label for="alamat" class="col-sm-4 control-label">Alamat</label>
+										<div class="col-sm-8">
+											<textarea class="form-control" id="alamat" placeholder="Alamat" rows="3"><?php echo $santri[0]['alamat']; ?></textarea>
+										</div>
+									</div>
 
-  								<div class="form-group">
-  									<label for="namaAyah" class="col-sm-4 control-label">Nama Ayah</label>
-  									<div class="col-sm-8">
-  										<input type="text" class="form-control" id="namaAyah" placeholder="Nama Ayah" value="<?php echo $santri[0]['namaAyah']; ?>">
-  									</div>
-  								</div>
+									<div class="form-group">
+										<label for="namaAyah" class="col-sm-4 control-label">Nama Ayah</label>
+										<div class="col-sm-8">
+											<input type="text" class="form-control" id="namaAyah" placeholder="Nama Ayah" value="<?php echo $santri[0]['namaAyah']; ?>">
+										</div>
+									</div>
 
-  								<div class="form-group">
-  									<label for="namaIbu" class="col-sm-4 control-label">Nama Ibu</label>
-  									<div class="col-sm-8">
-  										<input type="text" class="form-control" id="namaIbu" placeholder="Nama Ibu" value="<?php echo $santri[0]['namaIbu']; ?>">
-  									</div>
-  								</div>
+									<div class="form-group">
+										<label for="namaIbu" class="col-sm-4 control-label">Nama Ibu</label>
+										<div class="col-sm-8">
+											<input type="text" class="form-control" id="namaIbu" placeholder="Nama Ibu" value="<?php echo $santri[0]['namaIbu']; ?>">
+										</div>
+									</div>
 
-  								<div class="form-group">
-  									<label for="email" class="col-sm-4 control-label">Email</label>
-  									<div class="col-sm-8">
-  										<input type="text" class="form-control" id="email" placeholder="Email" value="<?php echo $santri[0]['email']; ?>">
-  									</div>
-  								</div>
+									<div class="form-group">
+										<label for="email" class="col-sm-4 control-label">Email</label>
+										<div class="col-sm-8">
+											<input type="text" class="form-control" id="email" placeholder="Email" value="<?php echo $santri[0]['email']; ?>">
+										</div>
+									</div>
 
-  							</div>
+								</div>
 
-  						</div>
-  					</form>
+							</div>
+						</form>
+					</div>
+					<div class="col-md-12">
+	  					<div class="box-body">
+							<div class="form-group">
+								<label for="kelas" class="col-sm-4 control-label">Kelas</label>
+								<div class="col-sm-8">
+									<select class="form-control" id="kelas">
+										<option value="">-- Pilih Kelas --</option>
+										<?php for($a=0; $a<count($kelas); $a++){  ?>
+											<option value="<?php echo $kelas[$a]['idKelas'] ?>"  <?php if($santri[0]['idKelas']==$kelas[$a]['idKelas']){ echo "selected";} ?>  >
+												<?php echo $kelas[$a]['namaKelas']  ." - " . $kelas[$a]['realname'] ?>
+											</option>
+										<?php } ?>
+									</select>
+								</div>
+							</div>  
+						</div>
+					</div>					
   					<!-- /.box-body -->
   					<div class="box-footer">
   						<button type="submit" class="btn btn-info pull-right" onclick="editSantri()">Simpan</button>

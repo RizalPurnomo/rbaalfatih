@@ -22,6 +22,7 @@ class User extends CI_Controller {
       if(isset($iduser)) {
           $data['user']      = $this->user_model->getuserById($iduser);
       }
+      //print_array($data);
       $this->load->view('master/view_user_edit',$data);   
     }     
 

@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Santri_model extends CI_Model {
+class Tabungan_model extends CI_Model {
 
 	public function __construct(){
 		parent::__construct();
@@ -38,9 +38,11 @@ class Santri_model extends CI_Model {
 		return $idSantri;      
 	}	
 
-	public function getAllSantri(){
-		$sql = "SELECT * FROM tblsantri a
-			INNER JOIN tblkelas b ON a.idkelas=b.idkelas";
+	public function getAllTabungan(){
+		$sql = "SELECT * FROM tbltabungan a
+			INNER JOIN tblsantri b ON a.idsantri=b.idSantri
+			INNER JOIN tbluser c ON c.iduser=a.iduser
+			inner join tblkelas d on d.idkelas=b.idkelas";
 		$qry = $this->db->query($sql);
 		return $qry->result_array();        
 	}
@@ -58,13 +60,6 @@ class Santri_model extends CI_Model {
 			FROM tblsantri ";
         $qry = $this->db->query($sql)->result_array();
         return $qry;        
-	}	
-	
-    public function search_santri($nama){
-        $this->db->like('nama', $nama , 'both');
-        $this->db->order_by('nama', 'ASC');
-        $this->db->limit(10);
-        return $this->db->get('tblsantri')->result();
-    }    	
+    }	
 
 }

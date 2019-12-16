@@ -5,7 +5,7 @@
   <script type="text/javascript">
   	function selectSantri(id) {
   		console.log(id);
-  		var idSantri = $("#" + id + " td")[1].innerHTML;
+  		var idSantri = $("#" + id + " td")[2].innerHTML;
           console.log(idSantri);
   		$.ajax({
   			success: function (html) {
@@ -16,12 +16,12 @@
   	}
 
     function deleteSantri(id) {
-      var idSiswa = $("#" + id + " td")[1].innerHTML;    
+      var idSantri = $("#" + id + " td")[2].innerHTML;    
       var r = confirm("Apakah yakin data akan di hapus!");
       if (r == true) {
         $.ajax({
           type: "POST",
-          url: "<?php echo base_url(); ?>santri/delete/" + idSiswa,
+          url: "<?php echo base_url(); ?>santri/delete/" + idSantri,
           success: function (html) {
             console.log(html);
             var url = "<?php echo base_url(); ?>santri/";
@@ -44,7 +44,7 @@
   		</h1>
   		<ol class="breadcrumb">
   			<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-  			<li class="active">Dashboard</li>
+  			<li class="active">Santri</li>
   		</ol>
   	</section>
 
@@ -57,14 +57,14 @@
                     
   					<div class="box-body">
                       <a class="btn btn-large btn-primary" href="<?php echo base_url('santri/add');?>">Tambah Santri</a>
-                      <div class="box-body">
+                      <div class="box-body table-responsive">
                         <table id="example1" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
                                         <th>No</th>
+                                        <th>Kelas</th>
                                         <th>Id Santri</th>
                                         <th>Nama</th>
-                                        <th>Panggilan</th>
                                         <th>Tempat Lahir</th>
                                         <th>Tanggal Lahir</th>
                                         <th>Jenis Kelamin</th>
@@ -77,9 +77,9 @@
                                 <?php $idSantri = $santri[$a]['idSantri']; ?>
                                 <tr id="santri<?php echo $idSantri; ?>">
                                     <td><?php echo $a+1 ?></td>
+                                    <td><?php echo $santri[$a]['namaKelas'] ?></td>
                                     <td><?php echo $idSantri ?></td>
                                     <td><?php echo $santri[$a]['nama'] ?></td>
-                                    <td><?php echo $santri[$a]['panggilan'] ?></td>
                                     <td><?php echo $santri[$a]['tmpLahir'] ?></td>
                                     <td><?php echo $santri[$a]['tglLahir'] ?></td>
                                     <td><?php echo $santri[$a]['jnsKel'] ?></td>
@@ -96,9 +96,9 @@
                                 <tfoot>
                                     <tr>
                                         <th>No</th>
+                                        <th>Kelas</th>
                                         <th>Id Santri</th>
                                         <th>Nama</th>
-                                        <th>Panggilan</th>
                                         <th>Tempat Lahir</th>
                                         <th>Tanggal Lahir</th>
                                         <th>Jenis Kelamin</th>

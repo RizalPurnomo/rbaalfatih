@@ -57,7 +57,7 @@
                     
   					<div class="box-body">
                       <a class="btn btn-large btn-primary" href="<?php echo base_url('user/add');?>">Tambah Pengajar</a>
-                      <div class="box-body">
+                      <div class="box-body table-responsive">
                         <table id="example1" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>

@@ -37,8 +37,8 @@
 		return dateTime;
     }
 
-  	function saveUser() {
-		getUser();
+  	function editUser() {
+		//getUser();
 		var today = new Date(),
               curr_hour = today.getHours(),
               curr_min  = today.getMinutes(),
@@ -69,9 +69,9 @@
         $.ajax({
         type:"POST",
         data : dataArray,
-        url:'<?php echo base_url('user/saveUser'); ?>',
+        url:'<?php echo base_url('user/editUser/'); ?>' + idUser,
         success:function(result){
-            alert("Data Berhasil Disimpan");
+            alert("Data Berhasil Diedit");
             console.log(result);
             window.location = "<?php echo base_url(); ?>user";
         }
@@ -79,15 +79,15 @@
 
   	}
 
-	function getUser(){    
-		$.ajax({
-			type:"GET",
-			url:"<?php echo base_url(); ?>user/getMaxUser/",
-			success:function(html){
-				$("#idUser").val(html);
-			}
-		})
-	}	  
+	// function getUser(){    
+	// 	$.ajax({
+	// 		type:"GET",
+	// 		url:"<?php echo base_url(); ?>user/getMaxUser/",
+	// 		success:function(html){
+	// 			$("#idUser").val(html);
+	// 		}
+	// 	})
+	// }	  
 
   </script>
 
@@ -102,7 +102,7 @@
   		</h1>
   		<ol class="breadcrumb">
   			<li><a href="#"><i class="fa fa-dashboard"></i> Pengajar</a></li>
-  			<li class="active">add</li>
+  			<li class="active">Edit</li>
   		</ol>
   	</section>
 
@@ -114,7 +114,7 @@
   				<!-- Horizontal Form -->
   				<div class="box box-info">
   					<div class="box-header with-border">
-  						<h3 class="box-title">Input Data Pengajar</h3>
+  						<h3 class="box-title">Edit Data Pengajar</h3>
   					</div>
 
   					<form class="form-horizontal">
@@ -123,28 +123,28 @@
   								<div class="form-group">
   									<label for="idUser" class="col-sm-2 control-label">ID Pengajar</label>
   									<div class="col-sm-10">
-  										<input type="text" class="form-control" id="idUser" placeholder="ID Pengajar" value="<?php echo $idUser; ?>" disabled>
+  										<input type="text" class="form-control" id="idUser" placeholder="ID Pengajar" value="<?php echo $user[0]['iduser']; ?>" disabled>
   									</div>
   								</div>
 
   								<div class="form-group">
   									<label for="user" class="col-sm-2 control-label">Username</label>
   									<div class="col-sm-10">
-  										<input type="text" class="form-control" id="user" placeholder="Username">
+  										<input type="text" class="form-control" id="user" placeholder="Username" value="<?php echo $user[0]['user']; ?>">
   									</div>
   								</div>
 
   								<div class="form-group">
   									<label for="realname" class="col-sm-2 control-label">Realname</label>
   									<div class="col-sm-10">
-  										<input type="text" class="form-control" id="realname" placeholder="Realname">
+  										<input type="text" class="form-control" id="realname" placeholder="Realname" value="<?php echo $user[0]['realname']; ?>">
   									</div>
   								</div>                                  
 
   								<div class="form-group">
   									<label for="password" class="col-sm-2 control-label">Password</label>
   									<div class="col-sm-10">
-  										<input type="password" class="form-control" id="password" placeholder="Password">
+  										<input type="password" class="form-control" id="password" placeholder="Password" value="<?php echo $user[0]['password']; ?>">
   									</div>
   								</div>                                  
 
@@ -152,8 +152,8 @@
   									<label for="jenisKelamin" class="col-sm-2 control-label">Jenis Kelamin</label>
   									<div class="col-sm-10">
   										<select class="form-control" id="jenisKelamin">
-  											<option value="L">Laki Laki</option>
-  											<option value="P">Perempuan</option>
+                                            <option value="L" <?php if($user[0]['jnsKel']=="L"){echo "selected";} ?>>Laki Laki</option>
+                                            <option value="P" <?php if($user[0]['jnsKel']=="P"){echo "selected";} ?>>Perempuan</option>
   										</select>
   									</div>
   								</div>
@@ -162,8 +162,8 @@
   									<label for="level" class="col-sm-2 control-label">Level</label>
   									<div class="col-sm-10">
   										<select class="form-control" id="level" disabled>
-  											<option value="Administrator">Administrator</option>
-  											<option value="Pengajar" selected>Pengajar</option>
+                                          <option value="Administrator" <?php if($user[0]['level']=="Administrator"){echo "selected";} ?>>Administrator</option>
+                                            <option value="Pengajar" <?php if($user[0]['level']=="Pengajar"){echo "selected";} ?>>Pengajar</option>
   										</select>
   									</div>
   								</div>                                
@@ -173,7 +173,7 @@
   					</form>
   					<!-- /.box-body -->
   					<div class="box-footer">
-  						<button type="submit" class="btn btn-info pull-right" onclick="saveUser()">Simpan</button>
+  						<button type="submit" class="btn btn-info pull-right" onclick="editUser()">Simpan</button>
   					</div>
   					<!-- /.box-footer -->
   				</div>
