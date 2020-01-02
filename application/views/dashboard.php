@@ -49,7 +49,21 @@
   								</div>
   								<a href="#" class="small-box-footer">Ikhwan : <?php echo $user[0]['L'] ?>  ||  Akhwat : <?php echo $user[0]['P'] ?> </i></a>
   							</div>
-  						</div>						  
+  						</div>	
+
+  						<div class="col-lg-3 col-xs-4">
+  							<!-- small box -->
+  							<div class="small-box bg-blue">
+  								<div class="inner">
+  									<h3 class="uang"><?php echo $tabungan[0]['saldo'] ?></h3>
+  									<p>TABUNGAN </p>
+  								</div>
+  								<div class="icon">
+  									<i class="ion ion-person"></i>
+  								</div>
+  								<a href="#" class="small-box-footer">Debet : <?php echo $debet[0]['debet'] ?>  ||  Kredit : <?php echo $kredit[0]['kredit'] ?> </i></a>
+  							</div>
+  						</div>						  					  
 
   					</div>
   				</div>

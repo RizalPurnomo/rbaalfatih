@@ -5,6 +5,7 @@ class Kelas extends CI_Controller {
 
 	public function __construct(){
 		parent::__construct();
+		//chek_session();
 		$this->load->model(array('kelas_model','user_model'));
     }
 

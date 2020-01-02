@@ -21,7 +21,8 @@ class Home extends CI_Controller {
 
 	public function __construct(){
 		parent::__construct();
-		$this->load->model(array('user_model','santri_model'));
+		//chek_session();	
+		$this->load->model(array('user_model','santri_model','tabungan_model'));
     }
 
 	public function index(){
@@ -49,6 +50,9 @@ class Home extends CI_Controller {
 	public function dashboard(){
 		$data['santri'] = $this->santri_model->getSumSantri();
 		$data['user'] = $this->user_model->getSumUser();
+		$data['tabungan']	= $this->tabungan_model->getSaldoTabungan();
+		$data['debet']	= $this->tabungan_model->getDebetTabungan();
+		$data['kredit']	= $this->tabungan_model->getKreditTabungan();
 		$this->load->view('dashboard',$data);
 	}
 

@@ -40,7 +40,8 @@ class Santri_model extends CI_Model {
 
 	public function getAllSantri(){
 		$sql = "SELECT * FROM tblsantri a
-			INNER JOIN tblkelas b ON a.idkelas=b.idkelas";
+			INNER JOIN tblkelas b ON a.idkelas=b.idkelas
+			order by nama";
 		$qry = $this->db->query($sql);
 		return $qry->result_array();        
 	}

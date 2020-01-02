@@ -67,15 +67,15 @@
 
         console.log(dataArray);
         $.ajax({
-        type:"POST",
-        data : dataArray,
-        url:'<?php echo base_url('user/saveUser'); ?>',
-        success:function(result){
-            alert("Data Berhasil Disimpan");
-            console.log(result);
-            window.location = "<?php echo base_url(); ?>user";
-        }
-    })  		
+			type:"POST",
+			data : dataArray,
+			url:'<?php echo base_url('user/saveUser'); ?>',
+			success:function(result){
+				alert("Data Berhasil Disimpan");
+				console.log(result);
+				window.location = "<?php echo base_url(); ?>user";
+        	}
+    	})  		
 
   	}
 

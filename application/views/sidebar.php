@@ -62,6 +62,18 @@
           </ul>
         </li>           
 
+        <li class="treeview active">
+          <a href="#">
+            <i class="fa fa-files-o"></i>
+            <span>Laporan</span>
+            <span class="pull-right-container">
+              <!--<span class="label label-primary pull-right">4</span> -->
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="<?php echo base_url('tabungan/laporan'); ?>"><i class="fa fa-circle-o"></i>Lap Tabungan</a></li>
+          </ul>
+        </li>  
 
       </ul>
     </section>

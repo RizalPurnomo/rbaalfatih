@@ -12,54 +12,67 @@ class Tabungan_model extends CI_Model {
 	}  	
 
 	public function editData($id,$data,$tabel){ 
-		$this->db->where('idSantri', $id);
+		$this->db->where('idTabungan', $id);
 		$this->db->update($tabel, $data);
 		return  "Data ".$id." Berhasil Diupdate";
 	} 	
 
 	public function deleteData($id,$tabel){
-		$this->db->where('idSantri', $id);
+		$this->db->where('idTabungan', $id);
 		$this->db->delete($tabel);
 	} 	
 
-	public function getidSantri($thn){
-		$idSantri="";
-		$sql = "SELECT MAX(idSantri) AS maxSantri FROM tblsantri WHERE idSantri LIKE '$thn%'";
+	public function getidTabungan($thn){
+		$idTabungan="";
+		$sql = "SELECT MAX(idTabungan) AS maxTabungan FROM tbltabungan WHERE idTabungan LIKE '$thn%'";
 		$qry = $this->db->query($sql)->result_array();
-		$maxSantri = $qry[0]['maxSantri'];
+		$maxTabungan = $qry[0]['maxTabungan'];
 		//echo $maxRM;
 		//exit;
-		if (empty($maxSantri)) {
-			$idSantri=$thn."001";
+		if (empty($maxTabungan)) {
+			$idTabungan=$thn."001";
 		}else{
-			$maxSantri++;
-			$idSantri = $maxSantri;
+			$maxTabungan++;
+			$idTabungan = $maxTabungan;
 		}
-		return $idSantri;      
+		return $idTabungan;      
 	}	
 
 	public function getAllTabungan(){
 		$sql = "SELECT * FROM tbltabungan a
 			INNER JOIN tblsantri b ON a.idsantri=b.idSantri
 			INNER JOIN tbluser c ON c.iduser=a.iduser
-			inner join tblkelas d on d.idkelas=b.idkelas";
+			inner join tblkelas d on d.idkelas=b.idkelas
+			order by tanggal desc";
 		$qry = $this->db->query($sql);
 		return $qry->result_array();        
 	}
 	  
-	public function getSantriById($idSantri){
-		$query = "SELECT * FROM tblSantri WHERE idSantri='$idSantri'";     
+	public function getTabunganById($idTabungan){
+		$query = "SELECT * FROM tbltabungan a
+			INNER JOIN tbluser b ON a.idUser=b.iduser
+			INNER JOIN tblsantri c ON c.idSantri=a.idSantri
+			WHERE a.idTabungan='$idTabungan'";     
 		$sql = $this->db->query($query);
 		return $sql->result_array();  
 	}	  
 
-    public function getSumSantri(){
-        $sql = "SELECT COUNT(idsantri)AS id,
-				(SELECT (COUNT(idsantri)) FROM tblsantri a WHERE jnsKel='l' ) AS L,
-				(SELECT (COUNT(idsantri)) FROM tblsantri a WHERE jnsKel='p' ) AS P
-			FROM tblsantri ";
+    public function getSaldoTabungan(){
+        $sql = "SELECT (SUM(debet)-SUM(kredit)) AS saldo FROM tbltabungan";
         $qry = $this->db->query($sql)->result_array();
         return $qry;        
-    }	
+	}	
+	
+    public function getDebetTabungan(){
+        $sql = "SELECT (SUM(debet)) AS debet FROM tbltabungan";
+        $qry = $this->db->query($sql)->result_array();
+        return $qry;        
+	}	
+	
+    public function getKreditTabungan(){
+        $sql = "SELECT (SUM(kredit)) AS kredit FROM tbltabungan";
+        $qry = $this->db->query($sql)->result_array();
+        return $qry;        
+    }		
 
 }

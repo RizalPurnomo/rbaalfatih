@@ -34,8 +34,7 @@
 		return dateTime;
     }
 
-  	function saveTabungan(){
-		getTabungan();
+  	function editTabungan(){
 		var today = new Date(),
               curr_hour = today.getHours(),
               curr_min  = today.getMinutes(),
@@ -45,7 +44,7 @@
   		var idTabungan      = $("#idTabungan").val();
   		var idSantri        = $("#idSantri").val();
 		var idUser        	= "<?php echo $this->session->userdata('iduser') ?>";
-		var datepicker  	= getDateTime(new Date($("#datepicker").val() + " " + curr_hour + ":" + curr_min + ":" + curr_sec));
+        var datepicker  	= getDateTime(new Date($("#datepicker").val() + " " + curr_hour + ":" + curr_min + ":" + curr_sec));
         var debet    		= $("#debet").val();
   		var kredit      	= $("#kredit").val();
   		var ket       		= $("#ket").val();
@@ -66,7 +65,7 @@
         $.ajax({
 			type:"POST",
 			data : dataArray,
-			url:'<?php echo base_url('tabungan/saveTabungan'); ?>',
+			url:'<?php echo base_url('tabungan/editTabungan/'); ?>' + idTabungan,
 			success:function(result){
 				alert("Data Berhasil Disimpan");
 				console.log(result);
@@ -76,15 +75,6 @@
 
   	}
 
-	function getTabungan(){    
-		$.ajax({
-			type:"GET",
-			url:"<?php echo base_url(); ?>tabungan/getMaxTabungan/",
-			success:function(html){
-				$("#idTabungan").val(html);
-			}
-		})
-	}
   </script>
 
   <!-- Content Wrapper. Contains page content -->
@@ -117,7 +107,7 @@
   								<div class="form-group">
   									<label for="idTabungan" class="col-sm-2 control-label">ID Tabungan</label>
   									<div class="col-sm-10">
-  										<input type="text" class="form-control" id="idTabungan" placeholder="ID Tabungan" value="<?php echo $idTabungan; ?>" disabled>
+  										<input type="text" class="form-control" id="idTabungan" placeholder="ID Tabungan" value="<?php echo $tabungan[0]['idTabungan']; ?>" disabled>
   									</div>
   								</div>
 
@@ -128,7 +118,17 @@
 										  <select name="video" class="form-control  input-lg select2" id="idSantri" required>
                                 			<option></option>
 											<?php for($a=0; $a<count($santri); $a++){ ?>
-												<option value="<?php echo $santri[$a]['idSantri']; ?>"><?php echo $santri[$a]['nama']; ?></option>
+												<option 
+                                                    value="<?php echo $santri[$a]['idSantri']; ?>" 
+                                                    <?php 
+                                                        // if($santri[$a]['idSantri'] == $tabungan[0]['idSantri'] ){echo 'selected'}; 
+                                                        if ($santri[$a]['idSantri'] == $tabungan[0]['idSantri']) {
+                                                            echo "selected";
+                                                        }
+                                                    ?> 
+                                                >
+                                                    <?php echo $santri[$a]['nama']; ?>
+                                                </option>
 											<?php } ?>
 											
 										</select>									  
@@ -144,7 +144,7 @@
   												<i class="fa fa-calendar"></i>
   											</div>
   											<input type="text" class="form-control pull-right" id="datepicker"
-  												value="<?php echo date('m-d-Y'); ?>">
+  												value="<?php echo $tabungan[0]['tanggal']; ?>">
   										</div>
   									</div>
   								</div>                                  
@@ -152,21 +152,21 @@
   								<div class="form-group">
   									<label for="debet" class="col-sm-2 control-label">Tabung(Debet)</label>
   									<div class="col-sm-10">
-  										<input type="text" class="form-control uang" id="debet" placeholder="Debet">
+  										<input type="text" class="form-control uang" id="debet" placeholder="Debet" value="<?php echo $tabungan[0]['debet']; ?>">
   									</div>
   								</div>                                  
 
   								<div class="form-group">
   									<label for="kredit" class="col-sm-2 control-label">Ambil(Kredit)</label>
   									<div class="col-sm-10">
-  										<input type="text" class="form-control uang" id="kredit" placeholder="Kredit">
+  										<input type="text" class="form-control uang" id="kredit" placeholder="Kredit" value="<?php echo $tabungan[0]['kredit']; ?>">
   									</div>
   								</div>        
 
   								<div class="form-group">
   									<label for="ket" class="col-sm-2 control-label">Keterangan</label>
   									<div class="col-sm-10">
-  										<input type="text" class="form-control" id="ket" placeholder="Keterangan">
+  										<input type="text" class="form-control" id="ket" placeholder="Keterangan" value="<?php echo $tabungan[0]['ket']; ?>">
   									</div>
   								</div>                                                               
                              
@@ -176,7 +176,7 @@
   					</form>
   					<!-- /.box-body -->
   					<div class="box-footer">
-  						<button type="submit" class="btn btn-info pull-right" onclick="saveTabungan()">Simpan</button>
+  						<button type="submit" class="btn btn-info pull-right" onclick="editTabungan()">Simpan</button>
   					</div>
   					<!-- /.box-footer -->
   				</div>

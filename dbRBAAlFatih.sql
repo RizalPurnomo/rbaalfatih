@@ -1,6 +1,6 @@
 /*
 SQLyog Ultimate v12.5.1 (64 bit)
-MySQL - 10.1.38-MariaDB : Database - dbrbaalfatih
+MySQL - 10.3.16-MariaDB : Database - dbrbaalfatih
 *********************************************************************
 */
 
@@ -26,13 +26,16 @@ CREATE TABLE `tblkelas` (
   `namaKelas` varchar(50) DEFAULT NULL,
   `idUser` varchar(5) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tblkelas` */
 
 insert  into `tblkelas`(`id`,`idKelas`,`namaKelas`,`idUser`) values 
 (1,'19001','Jilid 1','19002'),
-(2,'19002','Jilid 2','19001');
+(4,'19002','Jilid 2','19003'),
+(5,'19003','Jilid 3','19004'),
+(6,'19004','Jilid 4','19005'),
+(7,'19005','Jilid 5','19006');
 
 /*Table structure for table `tblsantri` */
 
@@ -53,12 +56,14 @@ CREATE TABLE `tblsantri` (
   `namaIbu` varchar(50) DEFAULT NULL,
   `email` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tblsantri` */
 
 insert  into `tblsantri`(`id`,`idSantri`,`idKelas`,`nama`,`panggilan`,`tmpLahir`,`tglLahir`,`jnsKel`,`tlp`,`alamat`,`namaAyah`,`namaIbu`,`email`) values 
-(2,'19001','19001','Rasya Pranaja Hakim','Rasya','Jakarta','2017-02-26','L','0858 1934 2720','Jl. Cempaka 3 No.263','Rahman Hakim','Retno Ayu','');
+(2,'19001','19001','Rasya Pranaja Hakim','Rasya','Jakarta','2017-02-26','L','0858 1934 2720','Jl. Cempaka 3 No.263','Rahman Hakim','Retno Ayu',''),
+(5,'19002','19001','Hafizah','Hafizah','','2019-12-14','P','','','','',''),
+(6,'19003','19002','Nindy Dwi Aryanti','Nindy','Jakarta','2013-06-01','L','','Kodam y','Mugiyono','Suci Haryanti','');
 
 /*Table structure for table `tbluser` */
 
@@ -74,13 +79,17 @@ CREATE TABLE `tbluser` (
   `level` varchar(20) DEFAULT NULL,
   `foto` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tbluser` */
 
 insert  into `tbluser`(`id`,`iduser`,`user`,`realname`,`password`,`jnsKel`,`level`,`foto`) values 
 (1,'19001','rizal','Rizal Purnomo','rhino','L','Administrator',NULL),
-(2,'19002','anggun','Anggun Sukma Al Batul','sukma','P','Administrator',NULL);
+(2,'19002','anggun','Anggun Sukma Al Batul','sukma','P','Pengajar',NULL),
+(3,'19003','Dzulfikri ','Dzulfikri Ali Mubarak','sukma','L','Pengajar',NULL),
+(4,'19004','Nisbach','Nisbach Nur Muhammad','Sukma','L','Pengajar',NULL),
+(5,'19005','Desi','Desi Artinarita Fauzi','Sukma','P','Pengajar',NULL),
+(6,'19006','Suryadi','Suryadi ','Sukma','L','Pengajar',NULL);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

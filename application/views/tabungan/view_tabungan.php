@@ -2,6 +2,39 @@
   <!-- Left side column. contains the logo and sidebar -->
   <?php $this->load->view('sidebar'); ?>
 
+  <script type="text/javascript">
+  	function selectTabungan(id) {
+  		console.log(id);
+  		var idTabungan = $("#" + id + " td")[1].innerHTML;
+          console.log(idTabungan);
+  		$.ajax({
+  			success: function (html) {
+  				var url = "<?php echo base_url(); ?>tabungan/edit/" + idTabungan;
+  				window.location.href = url;
+  			}
+  		});
+  	}
+
+    function deleteTabungan(id) {
+      var idTabungan = $("#" + id + " td")[1].innerHTML;    
+      var r = confirm("Apakah yakin data akan di hapus!");
+      if (r == true) {
+        $.ajax({
+          type: "POST",
+          url: "<?php echo base_url(); ?>tabungan/delete/" + idTabungan,
+          success: function (html) {
+            console.log(html);
+            var url = "<?php echo base_url(); ?>tabungan/";
+            window.location.href = url;
+          }
+        })
+      } else {
+        return;
+      }
+    }
+
+  </script>  
+
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
   	<section class="content-header">
@@ -33,9 +66,8 @@
                                         <th>Kelas</th>
                                         <th>Nama</th>
                                         <th>Tanggal</th>
-                                        <th>Debet</th>
-                                        <th>Kredit</th>
-                                        <th>Saldo</th>
+                                        <th>Tabung</th>
+                                        <th>Ambil</th>
                                         <th>Ket</th>
                                         <th>Input By</th>
                                         <th>Aksi</th>
@@ -51,8 +83,7 @@
                                     <td><?php echo $tabungan[$a]['nama']; ?></td>
                                     <td><?php echo $tabungan[$a]['tanggal']; ?></td>
                                     <td class="uang"><?php echo $tabungan[$a]['debet']; ?></td>
-                                    <td class="uang"><?php echo $tabungan[$a]['kredit']; ?></td>
-                                    <td class="uang"></td>
+                                    <td class="uang"><?php echo $tabungan[$a]['kredit']; ?></td>    
                                     <td><?php echo $tabungan[$a]['ket']; ?></td>
                                     <td><?php echo $tabungan[$a]['realname']; ?></td>
                                     <td width="125px">
@@ -71,9 +102,8 @@
                                         <th>Kelas</th>
                                         <th>Nama</th>
                                         <th>Tanggal</th>
-                                        <th>Debet</th>
-                                        <th>Kredit</th>
-                                        <th>Saldo</th>
+                                        <th>Tabung</th>
+                                        <th>Ambil</th>
                                         <th>Ket</th>
                                         <th>Input By</th>
                                         <th>Aksi</th>
