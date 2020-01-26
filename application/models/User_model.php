@@ -64,6 +64,12 @@ class User_model extends CI_Model {
 			FROM tbluser where level!='Administrator'";
         $qry = $this->db->query($sql)->result_array();
         return $qry;        
-    }	
+	}
+	
+	public function updateLastLogin($user,$data,$tabel){ 
+		$this->db->where('user', $user);
+		$this->db->update($tabel, $data);
+		return  "Data ".$id." Berhasil Diupdate";
+	} 	
 
 }

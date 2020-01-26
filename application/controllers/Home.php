@@ -35,12 +35,17 @@ class Home extends CI_Controller {
 	}
 
 	public function login(){
+		date_default_timezone_set('Asia/Jakarta');
 		$username = $this->input->post('username');
 		$password = $this->input->post('password');
 		
 		$userdata = $this->user_model->getValidUser($username,$password);
 		if ($userdata) {
 			$this->session->set_userdata($userdata[0]);
+			$login = array(
+				"lastLogin" => date("Y-m-d H:i:s")
+			);
+			$this->user_model->updateLastLogin($username,$login,'tbluser');
 			redirect('home/dashboard');
 		}else{
 			redirect('home');

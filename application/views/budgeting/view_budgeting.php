@@ -6,12 +6,12 @@
   <div class="content-wrapper">
   	<section class="content-header">
   		<h1>
-  			Dashboard
+  			Budgeting
   			<small>RBA Al Fatih</small>
   		</h1>
   		<ol class="breadcrumb">
   			<li><a href="<?php echo base_url('home/dashboard');?>"><i class="fa fa-dashboard"></i> Home</a></li>
-  			<li class="active">Dashboard</li>
+  			<li class="active">Budgeting</li>
   		</ol>
   	</section>
 
@@ -22,7 +22,7 @@
   			<div class="col-sm-12">
   				<div class="box box-info">
   					<div class="box-body">
-
+                    <h1>Menu ini sedang dalam proses</h1>
 
   					</div>
   				</div>

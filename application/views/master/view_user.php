@@ -43,7 +43,7 @@
   			<small>RBA Al Fatih</small>
   		</h1>
   		<ol class="breadcrumb">
-  			<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+  			<li><a href="<?php echo base_url('home/dashboard');?>"><i class="fa fa-dashboard"></i> Home</a></li>
   			<li class="active">Pengajar</li>
   		</ol>
   	</section>
@@ -68,6 +68,7 @@
                                         <th>Jenis Kelamin</th>
                                         <th>Level</th>
                                         <th>Foto</th>
+                                        <th>Las Login</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -82,6 +83,7 @@
                                     <td><?php echo $user[$a]['jnsKel'] ?></td>
                                     <td><?php echo $user[$a]['level'] ?></td>
                                     <td><?php echo $user[$a]['foto'] ?></td>
+                                    <td><?php echo $user[$a]['lastLogin'] ?></td>
                                     <td width="125px">
                                         <a class="btn btn-large btn-primary"
                                             href="javascript:selectUser('user<?php echo $user[$a]['iduser']; ?>')">Edit</a>
@@ -100,6 +102,7 @@
                                         <th>Jenis Kelamin</th>
                                         <th>Level</th>
                                         <th>Foto</th>
+                                        <th>Las Login</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </tfoot>

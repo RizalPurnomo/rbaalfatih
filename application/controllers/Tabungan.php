@@ -61,9 +61,50 @@ class Tabungan extends CI_Controller {
   }     
 
   public function laporan(){
-    $this->load->view('tabungan/view_lap_tabungan');
+    $thn = '2020';
+    $data['lapPerBulan'] = $this->tabungan_model->getLaporan($thn);
+    $this->load->view('tabungan/view_lap_tabungan',$data);
   }  
+
+  public function lapPerSantri($idSantri){
+    $data['lapPerSantri'] = $this->tabungan_model->getLapPerSantri($idSantri);
+    $this->load->view('tabungan/view_lap_per_santri',$data);
+  }    
     
+  public function lapPerBulan($bln){
+    $thn    = '2020';
+    $bulan  = "";
+    if($bln == '01'){
+      $bulan = "Januari";
+    }else if($bln == '02'){
+      $bulan = "Februari";
+    }else if($bln == '03'){
+      $bulan = "Maret";
+    }else if($bln == '04'){
+      $bulan = "April";
+    }else if($bln == '05'){
+      $bulan = "Mei";
+    }else if($bln == '06'){
+      $bulan = "Juni";
+    }else if($bln == '07'){
+      $bulan = "Juli";
+    }else if($bln == '08'){
+      $bulan = "Agustus";
+    }else if($bln == '09'){
+      $bulan = "September";
+    }else if($bln == '10'){
+      $bulan = "Oktober";
+    }else if($bln == '11'){
+      $bulan = "November";
+    }else if($bln == '12'){
+      $bulan = "Desember";
+    }
+
+    $data['bln'] = array('bln'=>$bulan,'thn'=>$thn);
+    $data['lapPerBulan'] = $this->tabungan_model->getLapPerBulan($bln,$thn);
+    $this->load->view('tabungan/view_lap_per_bln',$data);
+  }  
+
 }
 
 // $ eval `ssh-agent -s`

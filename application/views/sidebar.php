@@ -59,6 +59,7 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="<?php echo base_url('tabungan'); ?>"><i class="fa fa-circle-o"></i>Tabungan</a></li>
+            <li><a href="<?php echo base_url('budgeting'); ?>"><i class="fa fa-circle-o"></i>Budgeting Event</a></li>
           </ul>
         </li>           
 

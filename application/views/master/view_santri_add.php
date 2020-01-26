@@ -116,7 +116,7 @@
   			<small>RBA Al-Fatih</small>
   		</h1>
   		<ol class="breadcrumb">
-  			<li><a href="#"><i class="fa fa-dashboard"></i> Santri</a></li>
+  			<li><a href="<?php echo base_url('santri');?>"><i class="fa fa-dashboard"></i> Santri</a></li>
   			<li class="active">add</li>
   		</ol>
   	</section>

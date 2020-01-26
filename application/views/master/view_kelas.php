@@ -43,7 +43,7 @@
   			<small>RBA Al Fatih</small>
   		</h1>
   		<ol class="breadcrumb">
-  			<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+  			<li><a href="<?php echo base_url('home/dashboard');?>"><i class="fa fa-dashboard"></i> Home</a></li>
   			<li class="active">Kelas</li>
   		</ol>
   	</section>
@@ -87,11 +87,11 @@
                                 </tbody>
                                 <tfoot>
                                     <tr>
-										<th>No</th>
-                                        <th>Id Kelas</th>
-                                        <th>Nama Kelas</th>
-                                        <th>Pengajar</th>
-                                        <th>Aksi</th>
+                                      <th>No</th>
+                                      <th>Id Kelas</th>
+                                      <th>Nama Kelas</th>
+                                      <th>Pengajar</th>
+                                      <th>Aksi</th>
                                     </tr>
                                 </tfoot>
                             </table>
