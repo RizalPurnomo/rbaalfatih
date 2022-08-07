@@ -1,6 +1,6 @@
 /*
 SQLyog Ultimate v12.5.1 (64 bit)
-MySQL - 10.3.16-MariaDB : Database - dbrbaalfatih
+MySQL - 10.4.13-MariaDB : Database - dbrbaalfatih
 *********************************************************************
 */
 
@@ -65,6 +65,29 @@ insert  into `tblsantri`(`id`,`idSantri`,`idKelas`,`nama`,`panggilan`,`tmpLahir`
 (5,'19002','19001','Hafizah','Hafizah','','2019-12-14','P','','','','',''),
 (6,'19003','19002','Nindy Dwi Aryanti','Nindy','Jakarta','2013-06-01','L','','Kodam y','Mugiyono','Suci Haryanti','');
 
+/*Table structure for table `tbltabungan` */
+
+DROP TABLE IF EXISTS `tbltabungan`;
+
+CREATE TABLE `tbltabungan` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `idTabungan` varchar(5) DEFAULT NULL,
+  `idSantri` varchar(5) DEFAULT NULL,
+  `idUser` varchar(5) DEFAULT NULL,
+  `tanggal` datetime DEFAULT NULL,
+  `debet` int(11) DEFAULT NULL,
+  `kredit` int(11) DEFAULT NULL,
+  `ket` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+
+/*Data for the table `tbltabungan` */
+
+insert  into `tbltabungan`(`id`,`idTabungan`,`idSantri`,`idUser`,`tanggal`,`debet`,`kredit`,`ket`) values 
+(6,'19001','19001','19001','2020-01-02 09:55:47',100000,0,'Test'),
+(7,'19002','19001','19001','2020-01-04 09:56:07',0,50000,'Test Ambil'),
+(8,'19003','19003','19001','2020-02-05 21:10:20',260000,0,'');
+
 /*Table structure for table `tbluser` */
 
 DROP TABLE IF EXISTS `tbluser`;
@@ -78,18 +101,19 @@ CREATE TABLE `tbluser` (
   `jnsKel` varchar(5) DEFAULT NULL,
   `level` varchar(20) DEFAULT NULL,
   `foto` varchar(50) DEFAULT NULL,
+  `lastLogin` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tbluser` */
 
-insert  into `tbluser`(`id`,`iduser`,`user`,`realname`,`password`,`jnsKel`,`level`,`foto`) values 
-(1,'19001','rizal','Rizal Purnomo','rhino','L','Administrator',NULL),
-(2,'19002','anggun','Anggun Sukma Al Batul','sukma','P','Pengajar',NULL),
-(3,'19003','Dzulfikri ','Dzulfikri Ali Mubarak','sukma','L','Pengajar',NULL),
-(4,'19004','Nisbach','Nisbach Nur Muhammad','Sukma','L','Pengajar',NULL),
-(5,'19005','Desi','Desi Artinarita Fauzi','Sukma','P','Pengajar',NULL),
-(6,'19006','Suryadi','Suryadi ','Sukma','L','Pengajar',NULL);
+insert  into `tbluser`(`id`,`iduser`,`user`,`realname`,`password`,`jnsKel`,`level`,`foto`,`lastLogin`) values 
+(1,'19001','rizal','Rizal Purnomo','rhino','L','Administrator',NULL,'2021-06-01 04:38:08'),
+(2,'19002','anggun','Anggun Sukma Al Batul','anggunsayangrizal','P','Pengajar',NULL,'2021-05-31 16:13:33'),
+(3,'19003','Dzulfikri ','Dzulfikri Ali Mubarak','sukma','L','Pengajar',NULL,NULL),
+(4,'19004','Nisbach','Nisbach Nur Muhammad','Sukma','L','Pengajar',NULL,NULL),
+(5,'19005','Desi','Desiarti Narita Fauzi','Sukma','P','Pengajar',NULL,NULL),
+(6,'19006','Suryadi','Suryadi ','Sukma','L','Pengajar',NULL,NULL);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

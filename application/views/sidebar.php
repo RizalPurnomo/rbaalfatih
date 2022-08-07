@@ -5,13 +5,13 @@
       <div class="user-panel">
         <div class="pull-left image">
           <img src="
-            <?php 
-              if ($this->session->userdata('foto')=="") {
-                echo base_url('assets/images/logo.png'); 
-              }else{
-                echo base_url('assets/images/').$this->session->userdata('username').'.jpg';   
-              }
-              
+            <?php
+            if ($this->session->userdata('foto') == "") {
+              echo base_url('assets/images/logo.png');
+            } else {
+              echo base_url('assets/images/') . $this->session->userdata('username') . '.jpg';
+            }
+
             ?>
             " class="img-circle" alt="User Image">
         </div>
@@ -23,7 +23,9 @@
       </div>
 
       <!-- sidebar menu: : style can be found in sidebar.less -->
-      <!-- <?php $menu = $this->uri->segment(2); ?> <?php if($menu=="dashboard"){echo 'active'; } ?> -->
+      <!-- <?php $menu = $this->uri->segment(2); ?> <?php if ($menu == "dashboard") {
+                                                      echo 'active';
+                                                    } ?> -->
 
 
       <ul class="sidebar-menu">
@@ -32,7 +34,8 @@
         <div style="color: white">Terms : </div> -->
         <li class="header">MAIN NAVIGATION</li>
 
-        <?php //if($this->session->userdata('level')=="Administrator" ){?>
+        <?php //if($this->session->userdata('level')=="Administrator" ){
+        ?>
         <li class="treeview active">
           <a href="#">
             <i class="fa fa-files-o"></i>
@@ -46,8 +49,9 @@
             <li><a href="<?php echo base_url('user'); ?>"><i class="fa fa-circle-o"></i>Pengajar</a></li>
             <li><a href="<?php echo base_url('kelas'); ?>"><i class="fa fa-circle-o"></i>Kelas</a></li>
           </ul>
-        </li>                
-        <?php //} ?>
+        </li>
+        <?php //} 
+        ?>
 
         <li class="treeview active">
           <a href="#">
@@ -59,9 +63,10 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="<?php echo base_url('tabungan'); ?>"><i class="fa fa-circle-o"></i>Tabungan</a></li>
+            <li><a href="<?php echo base_url('pembayaran'); ?>"><i class="fa fa-circle-o"></i>Pembayaran</a></li>
             <li><a href="<?php echo base_url('budgeting'); ?>"><i class="fa fa-circle-o"></i>Budgeting Event</a></li>
           </ul>
-        </li>           
+        </li>
 
         <li class="treeview active">
           <a href="#">
@@ -74,7 +79,7 @@
           <ul class="treeview-menu">
             <li><a href="<?php echo base_url('tabungan/laporan'); ?>"><i class="fa fa-circle-o"></i>Lap Tabungan</a></li>
           </ul>
-        </li>  
+        </li>
 
       </ul>
     </section>
